@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>הרפתקאות דני - מופי גנבת המתנות</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="game-container">
+        <!-- HUD -->
+        <div id="hud">
+            נקודות: <span id="score">0</span><br>
+            חיים: <span id="lives">3</span><br>
+            שלב: <span id="level">1</span><br>
+            יהלומים: <span id="collected-gems">0</span>/<span id="total-gems">0</span>
+        </div>
+        
+        <div class="ammo-counter">
+            תחמושת: <span id="ammo">10</span>
+        </div>
+        
+        <!-- מסך פתיחה -->
+        <div id="start-screen" class="screen">
+            <h1 style="color: #ff9900;">הרפתקאות דני - מופי גנבת המתנות</h1>
+            <div id="story-container">
+                <p>זה היה אמור להיות יום ההולדת הכי מאושר בחייו של דני. הוא הביט סביבו בהתרגשות – בלונים צבעוניים התעופפו באוויר, שולחן ערוך עם עוגת יום הולדת יפהפייה, ומולו ערימת מתנות ענקית ומבטיחה.</p>
+                <p>אבל בבוקר שאחרי המסיבה, כשהשמש רק החלה לעלות, דני התעורר בתחושה שמשהו לא בסדר. הוא מיהר לחדר המשחקים, אך שם נדהם לגלות שהמתנות נעלמו!</p>
+                <p>במקום המתנות, הוא מצא פתק מקומט עם כתב יד שובב: "תודה על המתנות הנהדרות, דני! שיחקתי כל הלילה! אם אתה רוצה אותן בחזרה, בוא וחפש... מופי מפלצת המתנות."</p>
+                <p>דני החליט שלא יוותר, ויצא למסע בעקבות המתנות שלו.</p>
+            </div>
+            <button id="start-button">התחל משחק</button>
+            <button id="level-select-button">בחירת שלב</button>
+            <div id="controls">
+                <p>מקשים: חיצים לתנועה, רווח לקפיצה</p>
+                <p>לחץ Z ליריה</p>
+                <p>לחץ ESC לחזרה לתפריט</p>
+                <p>אסוף את כל היהלומים והמתנה בכל שלב והגע לדלת הירוקה</p>
+                <p>היזהר מהמפלצות האדומות!</p>
+                <p style="color: #00ccff;">9 שלבים עם אתגרים שונים והמתנות האבודות!</p>
+            </div>
+        </div>
+        
+        <!-- מסך Game Over -->
+        <div id="game-over-screen" class="screen">
+            <h1 style="color: #ff0000;">המשחק נגמר!</h1>
+            <p>הניקוד הסופי: <span id="final-score">0</span></p>
+            <button id="restart-button">שחק שוב</button>
+        </div>
+        
+        <!-- מסך סיום שלב -->
+        <div id="level-complete-screen" class="screen">
+            <h1 style="color: #00ff00;">השלב הושלם!</h1>
+            <p>מצאת את <span id="found-present"></span>!</p>
+            <p>הניקוד: <span id="level-score">0</span></p>
+            <button id="next-level-button">השלב הבא</button>
+        </div>
+        
+        <!-- מסך המפגש עם מופי -->
+        <div id="moopi-meeting-screen" class="screen">
+            <h1 style="color: #0088ff;">פגשת את מופי!</h1>
+            <div id="moopi-story" style="background-color: rgba(0, 0, 0, 0.7); border: 2px solid #0088ff; padding: 15px; border-radius: 10px; width: 80%; margin: 10px auto; font-size: 14px; line-height: 1.5;">
+                <p>דני: "למה גנבת את המתנות שלי, מופי?"</p>
+                <p>מופי (נראית מבוישת): "אני לא רציתי, באמת... אחותי בופי הכריחה אותי! היא המפלצת הלבנה השולטת במקדש האפל."</p>
+                <p>מופי: "היא רשעית ותמיד גורמת צרות. היא איימה עליי שאם לא אקח את המתנות שלך, היא..."</p>
+                <p>לפתע, צעקה מהדהדת במרחב: "מופי! מה את מספרת לו?!"</p>
+                <p>מופי: "זאת בופי! היא כאן! דני, אתה חייב להתעמת איתה ולהפסיק אותה!"</p>
+            </div>
+            <button id="final-battle-button">לקרב הסופי!</button>
+        </div>
+        
+        <!-- מסך סיום המשחק -->
+        <div id="game-complete-screen" class="screen">
+            <h1 style="color: #00ffff;">ניצחון! הצלחת להביס את בופי!</h1>
+            <div id="ending-story">
+                <p>דני הצליח להביס את בופי! היא נעלמה בפיצוץ של אור לבן.</p>
+                <p>מופי (מחייכת): "תודה רבה שהצלת אותי מאחותי! עכשיו כולנו יכולים לחיות בשלום."</p>
+                <p>מופי מחזירה לדני את כל המתנות שלו, והוא מציע שתבוא אליו לשחק.</p>
+                <p>דני למד שלפעמים מי שנראה כמו אויב הוא פשוט מישהו שזקוק לעזרה, ואת הכוח של חברות אמיתית.</p>
+            </div>
+            <p>הניקוד הסופי: <span id="final-total-score">0</span></p>
+            <button id="play-again-button">שחק שוב</button>
+        </div>
+        
+        <!-- מסך בחירת שלבים -->
+        <div id="level-select-screen" class="screen" style="display: none;">
+            <h1>בחר שלב</h1>
+            <div id="level-buttons" style="display: flex; flex-wrap: wrap; justify-content: center; max-width: 80%;">
+                <div class="level-button-container">
+                    <button class="level-button" data-level="1">1</button>
+                    <p>המבצר הנטוש</p>
+                    <p class="level-description">מכונית המירוץ של דני נמצאת במבצר!</p>
+                </div>
+                <div class="level-button-container">
+                    <button class="level-button" data-level="2">2</button>
+                    <p>היער המכושף</p>
+                    <p class="level-description">סט הלגו החדש מוחבא ביער המכושף.</p>
+                </div>
+                <div class="level-button-container">
+                    <button class="level-button" data-level="3">3</button>
+                    <p>המבוך התת-קרקעי</p>
+                    <p class="level-description">קונסולת המשחקים נמצאת במבוך.</p>
+                </div>
+                <div class="level-button-container">
+                    <button class="level-button" data-level="4">4</button>
+                    <p>מערת קרח</p>
+                    <p class="level-description">הרובוט הצעצוע נמצא במערת קרח חלקלקה.</p>
+                </div>
+                <div class="level-button-container">
+                    <button class="level-button" data-level="5">5</button>
+                    <p>מכרה תת-קרקעי</p>
+                    <p class="level-description">הטלסקופ מוסתר במכרה המסוכן.</p>
+                </div>
+                <div class="level-button-container">
+                    <button class="level-button" data-level="6">6</button>
+                    <p>מגדל עננים</p>
+                    <p class="level-description">האופניים החדשים למעלה במגדל.</p>
+                </div>
+                <div class="level-button-container">
+                    <button class="level-button" data-level="7">7</button>
+                    <p>מדבר מסוכן</p>
+                    <p class="level-description">המצלמה הדיגיטלית מחכה במדבר.</p>
+                </div>
+                <div class="level-button-container">
+                    <button class="level-button" data-level="8">8</button>
+                    <p>המקדש האפל</p>
+                    <p class="level-description">משחק המחשב והמפגש עם מופי!</p>
+                </div>
+                <div class="level-button-container">
+                    <button class="level-button" data-level="9">9</button>
+                    <p>קרב בשמיים</p>
+                    <p class="level-description">הקרב הסופי נגד בופי!</p>
+                </div>
+            </div>
+            <button id="back-to-menu-button" style="margin-top: 20px;">חזרה לתפריט</button>
+        </div>
+    </div>
+    
+    <!-- קבצי JavaScript -->
+    <script src="js/globals.js"></script>
+    <script src="js/game-objects.js"></script>
+    <script src="js/game-engine.js"></script>
+    <script src="js/levels.js"></script>
+    <script src="js/game.js"></script>
+    <script src="js/presents.js"></script>
+    
+    <!-- קוד דיבוג -->
+    <script>
+        // הצגת הודעה לקונסול עם סיום טעינת הדף
+        window.addEventListener('load', function() {
+            console.log("Game loaded completely");
+            console.log("Current level: " + currentLevel);
+        });
+    </script>
+</body>
+</html>
